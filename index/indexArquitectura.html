@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arquitectura</title>
+    <script src="/ISI tools/scripts/conversorBases.js"></script>
+</head>
+<body>
+    <h1>Conversor de base</h1>
+    <form id="contact-form" method="post" action="">
+        <label for="numero">Ingrese el numero que desee convertir:</label><br>
+        <input type="text" id="numero">
+        <select id="baseInicial">
+            <option disabled selected>Base inicial</option>
+            <option value="2">2</option>
+            <option value="8">8</option>
+            <option value="10">10</option>
+            <option value="16">16</option>
+        </select>
+        <select id="baseFinal">
+            <option disabled selected>Base a convertir</option>
+            <option value="2">2</option>
+            <option value="8">8</option>
+            <option value="10">10</option>
+            <option value="16">16</option>
+        </select>
+        <button type="submit" id="miBoton">Convertir</button> <br> <br>
+        <label for="email">Numero convertido:</label>
+        <input type="text" id="resultadoInput" readonly>
+    </form>    
+</body>
+</html>

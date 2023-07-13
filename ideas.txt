@@ -1,0 +1,20 @@
+arquitectura (primer cuatrimestre):
+-conversor de bases
+-calculadora de complementos
+-pasaje de unidades de datos
+-calculadora de cada base
+-reduccion de variables de karnaugh
+-calculadora de exceso
+
+Algebra (primer cuatrimestre):
+-conversor polar a cartesiano y viceversa
+-calculadora de distancia entre puntos
+-calculadora producto vectorial
+-calculadora producto escalar
+-calculadora de producto mixto
+-ortonormalizacion
+-calculador de punto medio
+-calculadora de cosenos directores a angulos directores
+
+analisis (primer cuatrimestre):
+-
