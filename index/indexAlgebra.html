@@ -3,9 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>algebra</title>
+    <title>Algebra</title>
+    <script src="/ISI tools/scripts/conversorCoordenadas.js"></script>
 </head>
 <body>
-    <p>algebra</p>
+    <h1>Conversor de coordenadas</h1>
+    <form id="contact-form" method="post" action="">
+        <label for="x">Ingrese la coordenada en x:</label><br>
+        <input type="text" id="x">
+        <label for="y">Ingrese la coordenada en y:</label><br>
+        <input type="text" id="y">
+        <button type="submit" id="miBoton">Convertir</button> <br> <br>
+        <label for="email">Numero convertido:</label>
+        <input type="text" id="resultadoInput" readonly>
+    </form>    
 </body>
 </html>
