@@ -7,29 +7,19 @@ document.addEventListener('DOMContentLoaded', function() {
         var baseFinal = document.getElementById("baseFinal").value
         var resultadoInput = document.getElementById("resultadoInput")
 
-        //Conversion de Decimal a Binario
-        if(baseInicial == 10 && baseFinal == 2){
-            let binario = "";
+//-------------------------------------------------------FUNCIONES---------------------------------------------------
+        function DecimalBO(numero, baseFinal){
+            let resultado = "";
             while(numero > 0){
-                binario = (numero%2) + binario;
-                numero = Math.floor(numero/2);
+                resultado = (numero%baseFinal) + resultado;
+                numero = Math.floor(numero/baseFinal);
             }
-            resultadoInput.value=binario
+            return resultado
         }
-        //Conversion de Decimal a Octal
-        if(baseInicial == 10 && baseFinal == 8){
-            let octal = "";
-            while(numero > 0){
-                octal = (numero%8) + octal;
-                numero = Math.floor(numero/8);
-            }
-            resultadoInput.value=octal
-        }
-        //Conversion de Decimal a Hexadecimal
-        if(baseInicial == 10 && baseFinal == 16){
-            var hexadecimal = "";
+        function DecimalHexadecimal(numero){
+            let hexadecimal = "";
             while (numero > 0) {
-                var aux = numero % 16;
+                let aux = numero % 16;
                 if (aux < 10) {
                 hexadecimal = aux + hexadecimal;
                 } else {
@@ -37,158 +27,96 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 numero = Math.floor(numero / 16);
             }
-            resultadoInput.value=hexadecimal
+            return hexadecimal
         }
-        //Conversion de Octal a Binario
-        if (baseInicial == 8 && baseFinal == 2){
-            var decimal = 0
-            var posicion = 0
-            while(numero!==0){
-                var digito = numero % 10
-                decimal += digito * Math.pow(8, posicion)
-                numero = Math.floor(numero / 10)
-                posicion++
+        function BODecimal(numero, baseFinal){
+            let resultado = 0;
+            let posicion = 0;
+            while(numero !== 0){
+                let digito = numero % 10;
+                resultado += digito * Math.pow(baseFinal, posicion);
+                numero = Mate.floor(numero / 10);
+                posicion++;
             }
-            let binario = "";
-            while(decimal > 0){
-                binario = (decimal%2) + binario;
-                decimal = Math.floor(decimal/2);
+            return resultado
+        }
+        function HexadecimalDecimal(numero){
+            let decimal = 0;
+            let posicion = 0;
+            let caracteresHexadecimales = "0123456789ABCDEF";
+            for (let i = numero.length - 1; i >= 0; i--) {
+                let caracter = numero.charAt(i);
+                let valor = caracteresHexadecimales.indexOf(caracter);
+                decimal += valor * Math.pow(16, posicion);
+                posicion++;
             }
-            resultadoInput.value=binario
+            return decimal
+        }
+//-------------------------------------------------CONVERSIONES-------------------------------------------------------
+        //Conversion de Decimal a Binario
+        if(baseInicial == 10 && baseFinal == 2){
+            let resultado = DecimalBO(numero, baseFinal)
+            resultadoInput.value = resultado
+        }
+        //Conversion de Decimal a Octal
+        if(baseInicial == 10 && baseFinal == 8){
+            let resultado = DecimalBO(numero, baseFinal)
+            resultadoInput.value = resultado
+        }
+        //Conversion de Decimal a Hexadecimal
+        if(baseInicial == 10 && baseFinal == 16){
+            let resultado = DecimalHexadecimal(numero)
+            resultadoInput.value = resultado
         }
         //Conversion de Octal a Decimal
         if (baseInicial == 8 && baseFinal == 10){
-            var resultado = 0
-            var posicion = 0
-            while(numero!==0){
-                var digito = numero % 10
-                resultado += digito * Math.pow(8, posicion)
-                numero = Math.floor(numero / 10)
-                posicion++
-            }
+            let resultado = BODecimal(numero, baseFinal)
             resultadoInput.value = resultado
+        }
+        //Conversion de Octal a Binario
+        if (baseInicial == 8 && baseFinal == 2){
+            let decimal = BODecimal(numero, baseFinal)
+            let binario = DecimalBO(decimal)
+            resultadoInput.value = binario
         }
         //Conversion de Octal a Hexadecimal
         if (baseInicial == 8 && baseFinal == 16){
-            var decimal = 0
-            var posicion = 0
-            while(numero!==0){
-                var digito = numero % 10
-                decimal += digito * Math.pow(8, posicion)
-                numero = Math.floor(numero / 10)
-                posicion++
-            }
-            var hexadecimal = "";
-            while (decimal > 0) {
-                var aux = decimal % 16;
-                if (aux < 10) {
-                hexadecimal = aux + hexadecimal;
-                } else {
-                hexadecimal = String.fromCharCode(aux + 55) + hexadecimal;
-                }
-                decimal = Math.floor(decimal / 16);
-            }
-            resultadoInput.value=hexadecimal
-        }
-        //Conversion de Hexadecimal a Binario
-        if (baseInicial == 16 && baseFinal == 2){
-            var decimal = 0;
-            var posicion = 0;
-            var caracteresHexadecimales = "0123456789ABCDEF";
-            for (var i = numero.length - 1; i >= 0; i--) {
-                var caracter = numero.charAt(i);
-                var valor = caracteresHexadecimales.indexOf(caracter);
-                decimal += valor * Math.pow(16, posicion);
-                posicion++;
-            }
-            let binario = "";
-            while(decimal > 0){
-                binario = (decimal%2) + binario;
-                decimal = Math.floor(decimal/2);
-            }
-            resultadoInput.value=binario
-        }
-        //Conversion de Hexadecimal a Octal
-        if (baseInicial == 16 && baseFinal == 8){
-            var decimal = 0;
-            var posicion = 0;
-            var caracteresHexadecimales = "0123456789ABCDEF";
-            for (var i = numero.length - 1; i >= 0; i--) {
-                var caracter = numero.charAt(i);
-                var valor = caracteresHexadecimales.indexOf(caracter);
-                decimal += valor * Math.pow(16, posicion);
-                posicion++;
-            }
-            let octal = "";
-            while(decimal > 0){
-                octal = (decimal%8) + octal;
-                decimal = Math.floor(decimal/8);
-            }
-            resultadoInput.value=octal
+            let decimal = BODecimal(numero, baseFinal)
+            let binario = DecimalHexadecimal(decimal)
+            resultadoInput.value = binario
         }
         //Conversion de Hexadecimal a Decimal
         if (baseInicial == 16 && baseFinal == 10){
-            var resultado = 0;
-            var posicion = 0;
-            var caracteresHexadecimales = "0123456789ABCDEF";
-            for (var i = numero.length - 1; i >= 0; i--) {
-                var caracter = numero.charAt(i);
-                var valor = caracteresHexadecimales.indexOf(caracter);
-                resultado += valor * Math.pow(16, posicion);
-                posicion++;
-            }
-            resultadoInput.value=resultado
+            let resultado = HexadecimalDecimal(numero)
+            resultadoInput.value = resultado
+        }
+        //Conversion de Hexadecimal a Binario
+        if (baseInicial == 16 && baseFinal == 2){
+            let decimal = HexadecimalDecimal(numero)
+            let binario = DecimalBO(decimal, baseFinal)
+            resultadoInput.value = binario
+        }
+        //Conversion de Hexadecimal a Octal
+        if (baseInicial == 16 && baseFinal == 8){
+            let decimal = HexadecimalDecimal(numero)
+            let octal = DecimalBO(decimal, baseFinal)
+            resultadoInput.value = octal
+        }
+        //Conversion de Binario a Decimal
+        if (baseInicial == 2 && baseFinal == 10){
+            let resultado = BODecimal(numero, baseFinal)
+            resultadoInput.value = resultado
         }
         //Conversion de Binario a Octal
         if (baseInicial == 2 && baseFinal == 8){
-            var decimal = 0;
-            var posicion = 0;
-            while (numero !== 0) {
-                var digito = numero % 10;
-                decimal += digito * Math.pow(2, posicion);
-                numero = Math.floor(numero / 10);
-                posicion++;
-            }
-            let octal = "";
-            while(decimal > 0){
-                octal = (decimal%8) + octal;
-                decimal = Math.floor(decimal/8);
-            }
-            resultadoInput.value=octal
-        }
-
-        //Conversion de Binario a Decimal
-        if (baseInicial == 2 && baseFinal == 10){
-            var resultado = 0;
-            var posicion = 0;
-            while (numero !== 0) {
-                var digito = numero % 10;
-                resultado += digito * Math.pow(2, posicion);
-                numero = Math.floor(numero / 10);
-                posicion++;
-            }
-            resultadoInput.value=resultado
+            let decimal = BODecimal(numero, baseFinal)
+            let octal = DecimalBO(decimal, baseFinal)
+            resultadoInput.value = octal
         }
         //Conversion de Binario a Hexadecimal
         if (baseInicial == 2 && baseFinal == 16){
-            var decimal = 0;
-            var posicion = 0;
-            while (numero !== 0) {
-                var digito = numero % 10;
-                decimal += digito * Math.pow(2, posicion);
-                numero = Math.floor(numero / 10);
-                posicion++;
-            }
-            var hexadecimal = "";
-            while (decimal > 0) {
-                var aux = decimal % 16;
-                if (aux < 10) {
-                hexadecimal = aux + hexadecimal;
-                } else {
-                hexadecimal = String.fromCharCode(aux + 55) + hexadecimal;
-                }
-                decimal = Math.floor(decimal / 16);
-            }
+            let decimal = BODecimal(numero, baseFinal)
+            let hexadecimal = DecimalHexadecimal(decimal)
             resultadoInput.value=hexadecimal
         }
     })
