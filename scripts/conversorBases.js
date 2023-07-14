@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function(){
     document.getElementById('miBoton').addEventListener('click', function(event){
         event.preventDefault();
         //numero, baseInicial, baseFinal y resultadoInput son las variables que permiten laburar el js
@@ -71,4 +71,6 @@ document.addEventListener('DOMContentLoaded', function() {
             resultadoInput.value = DecimalBO(decimal, baseFinal);}
         if (baseInicial === 2 && baseFinal === 16){ //Binario a Hexadecimal
             let decimal = BODecimal(numero, baseFinal);
-            resultadoInput.value = DecimalHexadecimal(decimal);}})})
+            resultadoInput.value = DecimalHexadecimal(decimal);}
+    })    
+})
