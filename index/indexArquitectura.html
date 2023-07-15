@@ -29,6 +29,28 @@
         <button type="button" id="miBoton">Convertir</button> <br> <br>
         <label for="resultadoInput">Numero convertido:</label>
         <input type="text" id="resultadoInput" readonly>
-    </form>    
+    </form>
+    <h1>Calculadora suma y resta en binario, octal, decimal y hexadecimal</h1>
+    <form>
+        <label for="num1">Número 1:</label>
+        <input type="text" id="num1" /> <br>
+        <label for="num2">Número 2:</label>
+        <input type="text" id="num2" /> <br>
+        <label for="base">Base:</label>
+        <select id="base">
+            <option value="binario">Binario</option>
+            <option value="decimal">Decimal</option>
+            <option value="hexadecimal">Hexadecimal</option>
+            <option value="octal">Octal</option>
+        </select>
+        <label for="operacion">Operación:</label>
+        <select id="operacion">
+            <option value="sumar">Sumar</option>
+            <option value="restar">Restar</option>
+        </select>
+        <button type="button" id="calcular">Calcular</button> <br>
+        <label for="resultado">Resultado:</label>
+        <input type="text" id="resultado" readonly>
+    </form>
 </body>
 </html>

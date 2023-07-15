@@ -95,4 +95,41 @@ document.addEventListener('DOMContentLoaded', function(){
             resultadoInput.value = DecimalHexadecimal(decimal);
         }
     })    
+    document.getElementById('calcular').addEventListener('click', function(){
+        var num1 = document.getElementById('num1').value;
+        var num2 = document.getElementById('num2').value;
+        var base = document.getElementById('base').value;
+        var operacion = document.getElementById('operacion').value;
+
+        if (base === 'binario') {
+            num1 = parseInt(num1, 2);
+            num2 = parseInt(num2, 2);
+        } else if (base === 'hexadecimal') {
+            num1 = parseInt(num1, 16);
+            num2 = parseInt(num2, 16);
+        } else if (base === 'octal') {
+            num1 = parseInt(num1, 8);
+            num2 = parseInt(num2, 8);
+        } else {
+            num1 = parseInt(num1);
+            num2 = parseInt(num2);
+        }
+
+        var resultado;
+        if (operacion === 'sumar') {
+            resultado = num1 + num2;
+        } else if (operacion === 'restar') {
+            resultado = num1 - num2;
+        }
+
+        if (base === 'binario') {
+            resultado = resultado.toString(2);
+        } else if (base === 'hexadecimal') {
+            resultado = resultado.toString(16);
+        } else if (base === 'octal') {
+            resultado = resultado.toString(8);
+        }
+
+        document.getElementById('resultado').value = resultado;
+    })
 })
